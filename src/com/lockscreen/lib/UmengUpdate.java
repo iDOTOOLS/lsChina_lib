@@ -1,3 +1,4 @@
+
 package com.lockscreen.lib;
 
 import android.app.Activity;
@@ -14,9 +15,8 @@ import com.umeng.update.UmengUpdateListener;
 import com.umeng.update.UpdateResponse;
 import com.umeng.update.UpdateStatus;
 
-public class UmengUpdate extends UmengUpdateAPI{
+public class UmengUpdate extends UmengUpdateAPI {
 
-    
     public UmengUpdate() {
         super();
     }
@@ -28,11 +28,12 @@ public class UmengUpdate extends UmengUpdateAPI{
 
     public void versionUpdate(Activity act) {
         // TODO 版本更新
-if(CommonConstants.IS_DEBUG) {
-    LOG.logI("");
-}
+        if (CommonConstants.IS_DEBUG) {
+            LOG.logI("");
+        }
         if (!NetWorkUtils.isNetworkAvailable(Utilities.getApplicationContext())) {
-            Toast.makeText(Utilities.getApplicationContext(), RUtils.getStringIdentifier("net_unusual"), Toast.LENGTH_SHORT).show();
+            Toast.makeText(Utilities.getApplicationContext(),
+                    RUtils.getStringIdentifier("net_unusual"), Toast.LENGTH_SHORT).show();
             return;
         }
         isCheckUpdata = true;
@@ -50,14 +51,16 @@ if(CommonConstants.IS_DEBUG) {
 
                         break;
                     case UpdateStatus.No:
-                        Toast.makeText(Utilities.getApplicationContext(), RUtils.getStringIdentifier("newest_version"), Toast.LENGTH_SHORT)
+                        Toast.makeText(Utilities.getApplicationContext(),
+                                RUtils.getStringIdentifier("newest_version"), Toast.LENGTH_SHORT)
                                 .show();
                         break;
                     case UpdateStatus.NoneWifi:
 
                         break;
                     case UpdateStatus.Timeout:
-                        Toast.makeText(Utilities.getApplicationContext(), RUtils.getStringIdentifier("no_net_work"), Toast.LENGTH_SHORT)
+                        Toast.makeText(Utilities.getApplicationContext(),
+                                RUtils.getStringIdentifier("no_net_work"), Toast.LENGTH_SHORT)
                                 .show();
                         break;
                 }
@@ -69,9 +72,9 @@ if(CommonConstants.IS_DEBUG) {
 
     @Override
     public void update(Activity act) {
-if(CommonConstants.IS_DEBUG) {
-    LOG.logI("");
-}
+        if (CommonConstants.IS_DEBUG) {
+            LOG.logI("");
+        }
         com.umeng.update.UmengUpdateAgent.update(act);
     }
 
