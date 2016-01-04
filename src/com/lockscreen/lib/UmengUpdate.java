@@ -1,20 +1,24 @@
-package com.lockscreen.lib.China;
+package com.lockscreen.lib;
 
 import android.app.Activity;
 import android.widget.Toast;
 
+import com.dotools.base.CommonConstants;
+import com.dotools.debug.LOG;
 import com.dotools.utils.NetWorkUtils;
 import com.dotools.utils.RUtils;
 import com.dotools.utils.Utilities;
+import com.lockscreen.api.UmengUpdateAPI;
 import com.umeng.update.UmengUpdateAgent;
 import com.umeng.update.UmengUpdateListener;
 import com.umeng.update.UpdateResponse;
 import com.umeng.update.UpdateStatus;
 
-public class IsChina_UmengUpdate {
+public class UmengUpdate extends UmengUpdateAPI{
 
-    public static void umengUpdateInSettingPage(Activity act) {
-        com.umeng.update.UmengUpdateAgent.update(act);
+    
+    public UmengUpdate() {
+        super();
     }
 
     /**
@@ -24,7 +28,9 @@ public class IsChina_UmengUpdate {
 
     public void versionUpdate(Activity act) {
         // TODO 版本更新
-
+if(CommonConstants.IS_DEBUG) {
+    LOG.logI("");
+}
         if (!NetWorkUtils.isNetworkAvailable(Utilities.getApplicationContext())) {
             Toast.makeText(Utilities.getApplicationContext(), RUtils.getStringIdentifier("net_unusual"), Toast.LENGTH_SHORT).show();
             return;
@@ -60,4 +66,13 @@ public class IsChina_UmengUpdate {
         });
 
     }
+
+    @Override
+    public void update(Activity act) {
+if(CommonConstants.IS_DEBUG) {
+    LOG.logI("");
+}
+        com.umeng.update.UmengUpdateAgent.update(act);
+    }
+
 }
